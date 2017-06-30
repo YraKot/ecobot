@@ -11,8 +11,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'Craft Shop',
-	'brand': 'Craft Shop',
+	'name': 'Ecobot',
+	'brand': 'Ecobot',
 	
 	'stylus': 'public',
 	'static': 'public',
@@ -60,7 +60,8 @@ keystone.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'galleries': 'galleries',
 	'enquiries': 'enquiries',
-	'users': 'users'
+	'users': 'users',
+	'products': 'products'
 });
 
 // Start Keystone to connect to your database and initialise the web server

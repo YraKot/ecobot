@@ -1,45 +1,191 @@
 extends ../layouts/default
 
-block content
-	.container-fluid.home-image
-		.container
-			.tag-line Handcrafted<br/>for your home
+//- block content
+//- 	.container-fluid.home-image
+//- 		.container
+//- 			.tag-line Handcrafted<br/>for your home
 
-	.container.collections
-		.collection
-			a.collection-image.living(href="/store/living-room")
-				.tag-line Living
+//- 	.container.collections
+//- 		.collection
+//- 			a.collection-image.living(href="/store/living-room")
+//- 				.tag-line Living
 
-		.collection
-			a.collection-image.kitchen(href="/store/kitchen")
-				.tag-line Kitchen
-		.collection
-			a.collection-image.bedding(href="/store/bedroom")
-				.tag-line Bedding
+//- 		.collection
+//- 			a.collection-image.kitchen(href="/store/kitchen")
+//- 				.tag-line Kitchen
+//- 		.collection
+//- 			a.collection-image.bedding(href="/store/bedroom")
+//- 				.tag-line Bedding
 
-	.container.content
-		.col-md-8.col-md-push-2
-			p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+//- 	.container.content
+//- 		.col-md-8.col-md-push-2
+//- 			p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-	.container-fluid.home-banner-image
+//- 	.container-fluid.home-banner-image
 	
-	//- .container: .jumbotron
-	//- 	img(src='/images/logo.svg', width='160')
-	//- 	h1 Welcome
-	//- 	p This is your new <a href='http://keystonejs.com' target='_blank'>KeystoneJS</a> website.
-	//- 	p It includes the latest versions of
-	//- 		| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-	//- 		| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-	//- 	p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
-	//- 	hr
-	//- 	if user && user.canAccessKeystone
-	//- 		p
-	//- 			a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-	//- 	else
-	//- 		p We have created a default Admin user for you with the email <strong>job@colovo.com</strong> and the password <strong>sheeps</strong>.
-	//- 		p
-	//- 			a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-	//- 			|  to use the Admin UI.
-	//- 	hr
-	//- 	p Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-	//- 		| <a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
+
+block header
+	#header
+		#carousel-example-generic.carousel.slide(data-ride='carousel')
+			ol.carousel-indicators
+				li.active(data-target='#carousel-example-generic', data-slide-to='0')
+				li(data-target='#carousel-example-generic', data-slide-to='1')
+				li(data-target='#carousel-example-generic', data-slide-to='2')
+			.carousel-inner(role='listbox')
+				.item.active
+					img(src='images/slide2.jpg', alt='...')
+					.carousel-caption.slide1
+						.animated.bounceInDown
+							h1 BUGGY
+							h3 розумна машина
+						p.animated.bounceInRight
+							| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum at voluptatibus modi nihil fuga nostrum quidem. Eligendi esse hic itaque.
+						a(href="/store").btn.pull-left.btn-primary.btn-lg.animated.bounceIn КАТАЛОГ
+				.item.slide2
+					img(src='http://placehold.it/1920x800', alt='...')
+			a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+				span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+				span.sr-only Previous
+			a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+				span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+				span.sr-only Next
+// .header-container
+// .video-container
+// .filter
+// video.fillWidth(autoplay='', loop='')
+// source(src='youtube/mp4/50-Percent-Off.mp4', type='video/mp4')
+// | Your browser does not support the video tag. I suggest you upgrade your browser.
+// source(src='youtube/webm/50-Percent-Off.webm', type='video/webm')
+// | Your browser does not support the video tag. I suggest you upgrade your browser.
+// source(src='youtube/ogv/50-Percent-Off.ogv', type='video/ogg')
+// | Your browser does not support the video tag. I suggest you upgrade your browser.
+// .poster.hidden
+// img(src='yuotube/jpg/50-Percent-Off.jpg', alt='')
+
+block content
+	section#first
+		.container.wall1
+			p.graffiti1 about
+			.row
+				.col-md-12.text-right
+					h2
+						| _________ КОРОТКО ПРО НАШУ 
+						span ДІЯЛЬНІСТЬ
+		.container
+			.row
+				.col-md-5
+					h3
+						| Нам подобається те,
+						br
+						|  що ми робимо!
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit cupiditate, perspiciatis reiciendis voluptatem expedita temporibus ut delectus odio, aperiam optio quos dolore dolor iusto veritatis voluptatum, eaque praesentium soluta tempora asperiores aut architecto et quae. Aliquam architecto suscipit ullam, impedit maiores. Nihil quisquam ipsa sunt nemo dignissimos, odio ex mollitia.
+				.col-md-3
+					h3
+						| Наші 
+						br
+						| переваги
+					ul
+						li.ico
+							img.ico1(src='/images/ico/ico1.png', alt='')
+							| ЕКОЛОГІЧНО ЧИСТИЙ
+						li.ico
+							img.ico2(src='/images/ico/ico2.png', alt='')
+							| ЕЛЕКТРОНІКА
+						li.ico
+							img.ico3(src='/images/ico/ico3.png', alt='')
+							| КЕРУВАННЯ ЗІ СМАРТФОНА
+				.col-md-4(style='padding-top: 60px;')
+					#carousel-example-generic.carousel.slide(data-ride='carousel')
+						// Indicators
+						ol.carousel-indicators
+							li.active(data-target='#carousel-example-generic', data-slide-to='0')
+							li(data-target='#carousel-example-generic', data-slide-to='1')
+							li(data-target='#carousel-example-generic', data-slide-to='2')
+						// Wrapper for slides
+						.carousel-inner
+							.item.active
+								img(src='/images/prodslide.png', alt='...')
+							.item
+								img(src='/images/prodslide.png', alt='...')
+							.item
+								img(src='/images/prodslide.png', alt='...')
+	section#second
+		.container.wall2
+			p.graffiti2 projects
+			.row
+				.col-md-12.text-left
+					h2
+						| НАШІ УНІКАЛЬНІ 
+						span.yellow МОДЕЛІ
+						|  _________
+		.container
+			.row
+				.col-md-4.grid
+					a(href='#')
+						figure.effect
+							img(src='/images/1.jpg', alt='...')
+							figcaption
+								h5 231 ДЕТАЛЕЙ
+								h3 BAGGI МОДЕЛЬ 1
+				.col-md-4.grid
+					a(href='#')
+						figure.effect
+							img(src='/images/2.jpg', alt='...')
+							figcaption
+								h5 315 ДЕТАЛЕЙ
+								h3 BAGGI МОДЕЛЬ 1
+				.col-md-4.grid
+					a(href='#')
+						figure.effect
+							img(src='/images/3.jpg', alt='...')
+							figcaption
+								h5 340 ДЕТАЛЕЙ
+								h3 BAGGI МОДЕЛЬ 1
+	section#third
+		.container.wall3
+			p.graffiti3 contact us
+			.row
+				.col-md-12.text-right
+					h2
+						| _________ ЯК НАС МОЖНА 
+						span ЗНАЙТИ
+		.container
+			.row
+				.col-md-1
+				.col-md-3
+					h3 Зв'яжіться з нами
+					p +38 098 765 43 21
+					p +12 000 345 67 89
+					p ecobot.com
+					br
+					h4 Напишіть нам
+					p Якшо у вас виникли питання, ми з радістю відповімо вам!
+					
+					//- if enquirySubmitted
+					//- 	h3 Thanks for getting in touch.
+					//- else
+					//- 	form(method='post')
+					//- 		input(type='hidden', name='action', value='contact')
+					//- 		.form-group(class=validationErrors.name ? 'has-error' : null)
+					//- 			label Name
+					//- 			input(type='text', name='name.full', value=formData['name.full']).form-control
+					//- 		.form-group(class=validationErrors.email ? 'has-error' : null)
+					//- 			label Email
+					//- 			input(type='email', name='email', value=formData.email).form-control
+					//- 		.form-group
+					//- 			label Phone
+					//- 			input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+					//- 		.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
+					//- 			label What are you contacting us about?
+					//- 			select(name='enquiryType').form-control
+					//- 				option(value='') (select one)
+					//- 				each type in enquiryTypes
+					//- 					option(value=type.value, selected=formData.enquiryType == type.value)= type.label
+					//- 		.form-group(class=validationErrors.message ? 'has-error' : null)
+					//- 			label Message
+					//- 			textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
+					//- 		.form-actions
+					//- 			button(type='submit').btn.btn-primary Send
+				.col-md-8
+					iframe(src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2573.379471710956!2d24.012221015709212!3d49.835326979395234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1495451133929', width='100%', height='600', frameborder='0', style='border:0', allowfullscreen='')

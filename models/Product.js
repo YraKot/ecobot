@@ -17,7 +17,7 @@ Product.add({
 	price: { type: Types.Money, format: '$0,0.00' },
 	taxable: { type: Boolean, default: true },
 	description: { type: Types.Html, wysiwyg: true, height: 250 },
-	categories: { type: Types.Relationship, ref: 'ProductCategory', many: true },
+	
 	
 });
 

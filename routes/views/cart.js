@@ -11,7 +11,7 @@ exports = module.exports = function(req, res) {
 	locals.cartOptions = {
 		stripePublishableKey: keystone.get('stripe publishable key'),
 		defaultCountry: keystone.get('store country')
-	}
+	};
 	
 	// Render the view
 	view.render('cart');

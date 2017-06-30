@@ -1,10 +1,10 @@
 import {Component, default as React} from 'react'
 import ReactDOM from 'react-dom'
 import numeral from 'numeral'
-import countryData from './countries.js'
+import countryData from './countries.js' 
 import request from 'superagent'
 
-var {countries} = countryData
+var {countries} = countryData 
 
 const currencyFormat = '$0,0.00'
 const tax = 0.05
@@ -115,6 +115,7 @@ class Cart extends Component {
 			country: defaultSelectedCountryName,
 			city: defaultSelectedCity
 		}
+
 	}
 
 	componentDidMount() {
@@ -131,8 +132,8 @@ class Cart extends Component {
 		request.get(geocodeURL).end((err, response) => {
 			if (response && response.body) {
 				var {results} = response.body
-				// console.log("Success!")
-				// console.log(results)
+				console.log("Success!")
+				console.log(results)
 
 				var topResult = results[0] || null
 
@@ -225,7 +226,7 @@ class Cart extends Component {
 		});
 
 		StripeHandler.open({
-			name: 'Colovo Inc.',
+			name: 'Ecobot Inc.',
 			description: this.state.items.length + ' Items',
 			currency: "cad",
 			amount: (this.state.total * 100)
@@ -311,7 +312,7 @@ class Cart extends Component {
 					<div className="checkout-value">{numeral(this.state.total).format(currencyFormat)}</div>
 				</div>
 				<div className="checkout-form"> 
-					<label>Shipping Information</label>
+					<label>Контактна інформація</label>
 					<div className="form-group"> 
 						<input className="form-control" data-key="name" value={ this.state.name } placeholder="Name" onChange={ this.inputChanged.bind(this) }/>
 					</div>
@@ -322,11 +323,9 @@ class Cart extends Component {
 						<input className="form-control" data-key="postalCode" value={ this.state.postalCode } placeholder={ postalCodePlaceholder } onChange={ this.inputChanged.bind(this) }/>
 						<input className="form-control" data-key="city" value={ this.state.city } placeholder="City" onChange={ this.inputChanged.bind(this) }/>
 					</div>
-					<select className="form-control" data-key="country" value={ this.state.country } onChange={ this.countryChanged.bind(this) }>
-						{ countries.map(this.renderCountryOption.bind(this)) }
-					</select>
+					
 				 </div>
-					<div className="btn btn-primary btn-cart" onClick={ this.checkout.bind(this) }>Purchase</div>
+					<div className="btn btn-primary btn-cart" onClick={ this.checkout.bind(this) }>замовити</div>
 			</div>
 		</div>
 	}
