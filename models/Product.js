@@ -7,8 +7,10 @@ var Types = keystone.Field.Types;
  */
 
 var Product = new keystone.List('Product', {
-	map: { name: 'title' },
-	autokey: { path: 'slug', from: 'title', unique: true }
+    map: {name: 'title'},
+    singular: 'Product',
+    plural: 'Products',
+    autokey: {path: 'slug', from: 'title', unique: true}
 });
 
 Product.add({
@@ -18,8 +20,7 @@ Product.add({
 	brief: { type: Types.Html, wysiwyg: true, height: 150 },
 	description: { type: Types.Html, wysiwyg: true, height: 250 },
 	image: { type: Types.CloudinaryImage },
-	images: { type: Types.CloudinaryImages },
-	numb:{type: Number}
+	images: { type: Types.CloudinaryImages }
 });
 
 // Product.schema.virtual('content.full').get(function() {
