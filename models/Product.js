@@ -22,9 +22,9 @@ Product.add({
 	numb:{type: Number}
 });
 
-Product.schema.virtual('content.full').get(function() {
-	return this.content.extended || this.content.brief;
-});
+// Product.schema.virtual('content.full').get(function() {
+// 	return this.content.extended || this.content.brief;
+// });
 
 Product.defaultColumns = 'title, description|%20, price|%20';
 Product.register();
