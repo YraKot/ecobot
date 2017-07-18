@@ -34,7 +34,8 @@
     "nib": "^1.1.0",
     "utils-merge": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "jade": "*"
   },
   "engines": {
     "node": ">=0.10.22",
