@@ -43,14 +43,13 @@ exports = module.exports = function(app) {
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/cart', routes.views.cart);
-	app.get('/store', routes.views.products);
+	//app.get('/store', routes.views.products);
 
-	app.post('/order', routes.views.order);
 	//app.get('/cart', function(req, res));
 
-	app.get('/store/:banner?', routes.views.products);
+	// app.get('/store/:banner?', routes.views.products);
 
-	app.get('/product/:product', routes.views.product);
+	// app.get('/product/:product', routes.views.product);
 	app.all('/contact', routes.views.contact);
 
 	app.all('/checkout', routes.views.checkout);
