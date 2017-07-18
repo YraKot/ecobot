@@ -27,5 +27,5 @@ Product.add({
 // 	return this.content.extended || this.content.brief;
 // });
 
-Product.defaultColumns = 'title, description|%20, price|%20';
+// Product.defaultColumns = 'title, description|%20, price|%20';
 Product.register();
