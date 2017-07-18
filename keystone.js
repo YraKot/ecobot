@@ -47,9 +47,6 @@ keystone.set('store gateway', 'stripe');
 // Setup Default Country
 keystone.set('store country', 'Canada');
 
-// Setup Stripe keys
-// keystone.set('stripe secret key', process.env.STRIPE_SECRET_KEY || 'STRIPE_SECRET_KEY');
-// keystone.set('stripe publishable key', process.env.STRIPE_PUBLISHABLE_KEY || 'STRIPE_PUBLISHABLE_KEY');
 
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
@@ -61,7 +58,7 @@ keystone.set('nav', {
 	'galleries': 'galleries',
 	'enquiries': 'enquiries',
 	'users': 'users',
-	// 'products': 'products',
+	'products': 'products',
 	// 'banners' : 'banners',
 
 });
@@ -71,6 +68,7 @@ keystone.set('nav', {
 if (keystone.get('env') == 'production'){
     keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
     keystone.set('cookie secret', process.env.COOKIE_SECRET);
+
 }
 
 
