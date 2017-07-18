@@ -1,0 +1,22 @@
+extends ../layouts/default
+block content
+    if banners.length
+        each banner in banners
+            #carousel-example-generic.carousel.slide(data-ride='carousel')
+                .carousel-inner(role='listbox')
+                    .item.active(style="height: 450px")
+                        img(src= banner.image)
+                        .carousel-caption(style="height: 400px")
+                            .animated.bounceInDown
+                                h1= banner.name
+                            .animated.bounceInRight
+                                p= banner.description
+                                h2= banner.price
+                a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+                    span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                    span.sr-only Previous
+                a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+                    span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                    span.sr-only Next
+    else 
+        h1 nice try noob               

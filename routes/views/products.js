@@ -14,9 +14,19 @@ exports = module.exports = function(req, res) {
 		product: req.params.product
 	};
 	locals.data = {
-		products: []
+		products: [],
+		banners: []
 	};
 	
+	///////////////////////
+	view.on('init', function(next) {
+		
+		keystone.list('Banner').model.find().exec(function (err, results) {
+			locals.banners = results;
+			next(err);
+		});
+	});
+
 
 	// Load the products
 	view.on('init', function(next) {

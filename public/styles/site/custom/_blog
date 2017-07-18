@@ -1,0 +1,67 @@
+.categories
+    margin 90px 0 40px 0
+    .list_item
+        display inline-block
+    a
+        margin-right 24px
+        font-size 20px
+        color #767676
+        text-transform uppercase
+        text-decoration none
+    a:hover
+        color #222222
+        border-bottom-color #f7ae3a
+// .container
+//     border 1px solid red
+//     // display flex
+//     // flex-wrap wrap
+//     // justify-content center
+//     // position relative
+
+//     .item
+//         height 190px
+//         width 190px
+//         margin 5px
+//     div 
+//         position relative
+
+//         img 
+//             width 100%
+
+//         .brief
+//             position absolute
+//             z-index 100
+//             // backface-visibility hidden
+//             bottom 0
+//             width 100%
+            // padding: 3em;
+            // color: #fff;    
+// .categories
+// 	make-sm-column(3)
+// 	padding-left 0px
+// 	// padding-right 100px
+	
+// 	h2
+// 		margin-top 0px
+	
+// 	.list-group
+// 		padding-left: 0px
+		
+// 		.list-group-item
+// 			background transparent
+// 			color #656565
+// 			border none
+// 			padding-left 0px
+// 			font-size 1.3em
+			
+// 			&:hover
+// 				background transparent
+// 				color #5fb7cf
+				
+// 			&.active
+// 				background transparent
+// 				color #5fb7cf
+// 				border none
+			
+// 		.list-group-item.sub-item
+// 			padding-left 15px

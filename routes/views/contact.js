@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var nodemailer = require('nodemailer');
 var Enquiry = keystone.list('Enquiry');
 
 exports = module.exports = function(req, res) {
@@ -31,6 +32,26 @@ exports = module.exports = function(req, res) {
 			}
 			next();
 		});
+		var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			host: 'smtp.gmail.com',
+			port: 587,
+			auth: {
+				user: 'yurkawkyrka@gmail.com',
+				pass: '13765890'
+			},
+			tls: {rejectUnauthorized: false},
+			debug:true
+		});
+
+			var adminMailOptions = {
+				from: "yurkawkyrka@gmail.com",
+				to: req.body.email,
+				subject: "EcoBot",
+				html: req.body.message
+			};
+
+			transporter.sendMail(adminMailOptions);
 		
 	});
 	

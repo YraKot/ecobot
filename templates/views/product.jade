@@ -1,23 +1,160 @@
 extends ../layouts/default
-
+style(type='text/css').
+	.basic-sample > div {
+	width: 300px;
+	height: 400px;
+	}
+	.gallery-sample a.cloud-zoom {
+	/*margin-left: 123px; */
+	position: relative;
+	display: block;
+	}
+	.gallery-sample a.cloud-zoom img {
+	display: block;
+	width: 500px;
+	text-align: center;
+	}
+	.recent_list {
+	display: -webkit-box;
+	list-style: none;
+	}
+	.recent_list li {
+	border: 1px solid #ddd;
+	}
+style(type='text/css').
+	body {
+	font-family: arial, sans-serif;
+	color: #444;
+	font-size: 16px;
+	padding:0px;
+	margin:0px;
+	}
+	p {
+	line-height: 20px;
+	}
+	code {
+	font-weight: bold;
+	color: #f44;;
+	}
+	a {
+	color:#3d8dde;
+	}
+	#wrapper {
+	padding:10px;
+	}
+style.
+	/* div that surrounds Cloud Zoom image and content slider. */
+	#surround {
+	width:50%;
+	min-width: 256px;
+	max-width: 480px;
+	}
+	/* Image expands to width of surround */
+	img.cloudzoom {
+	width:100%;
+	}
+	/* CSS for slider - will expand to width of surround */
+	#slider1 {
+	float: left;
+	position:relative;
+	margin-top:40px;
+	width:120px;
+	height:400px;
+	border-left:1px solid #aaa;
+	border-right:1px solid #aaa;
+	margin-bottom:40px;
+	}
+style(type='text/css').
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	.slider {
+		width: 50%;
+		margin: 100px auto;
+	}
+	.slick-slide {
+		margin: 0px 20px;
+	}
+	.slick-slide img {
+		width: 100%;
+	}
+	.slick-prev:before, .slick-next:before {
+		color: black;
+	}
+style(type='text/css').
+	.basic-sample > div {
+		width: 300px;
+		height: 400px;
+	}
+	.gallery-sample a.cloud-zoom {
+		position: relative;
+		display: block;
+	}
+	.gallery-sample a.cloud-zoom img {
+		display: block;
+		width: 500px;
+		text-align: center;
+	}
+	.recent_list {
+		display: -webkit-box;
+		list-style: none;
+	}
+	.recent_list li {
+		border: 1px solid #ddd;
+	}
 block content
 	- var product = data.product
-	.container.store-container
+	.container
 		if !product
 			h2 Invalid product.
 		else
-			.store-content
-				.col-sm-7
-					if product.image.exists
-						.image-wrap: img(src=product._.image.fit(750,450)).img-responsive
-				
-				.col-sm-5(style='padding-right: 0px')
-					h1= product.title
-					p!= product.description
-					.product-price-product= numeral(product.price).format('$0.00')
+			.row(style="margin-top: 100px")
+				.col-md-6
+					.gallery-sample
+						#slider1
+							.thumbelina-but.vert.top ˄
+							ul
+								li.photo_container
+										a.cloud-zoom-gallery(href= product._.image.fit(800,800), rel="gallerySwitchOnMouseOver: true, popupWin: '" + product._.image.fit(300,300) + "', useZoom: 'cloudZoom', smallImage: '" + product._.image.fit(600,600) + " ' ")
+											img.img-responsive(itemprop='image', src= product._.image.fit(50,50))
+								each image in  product.images
+									li.photo_container
+										a.cloud-zoom-gallery(href= image.fit(800,800), rel="gallerySwitchOnMouseOver: true, popupWin: '" + image.fit(300,300) + "', useZoom: 'cloudZoom', smallImage: '" + image.fit(300,300) + "'")
+											img.img-responsive(itemprop='image', src= image.fit(50,50))
+							.thumbelina-but.vert.bottom ˅
+						div(style='margin-left: 123px')
+							a#cloudZoom.cloud-zoom(href= product._.image.fit(800,800))
+								img.img-responsive(src= product._.image.fit(800,800))
+					//- if product.image.exists
+					//- 	.image-wrap: img(src=product._.image.fit(cover)).img-responsive
+				.col-md-6
+					.prod_title: h1= product.title
+					.prod_price= numeral(product.price).format('$0.00')
+					.prod_store на складі
+					.prod_brief: p!= product.brief
 					#addToCart(style='margin-top:10px;')
 						.btn-text Додати в кошик
 						.btn-count
+				
+			.row: .col-md-12(style="padding: 0;")
+				.tab
+					button.tablinks#defaultOpen(onclick="openCity(event, 'Description')") опис
+					button.tablinks(onclick="openCity(event, 'Instruction')") інструкції
+					button.tablinks(onclick="openCity(event, 'Video')") відео
+				#Description.tabcontent
+					h3= product.title
+					p!= product.description
+				#Instruction.tabcontent
+					h3 Instruction
+				#Video.tabcontent
+					h3 Youtube
+					.container
+						<iframe width="100%" height="500px" src="https://www.youtube.com/embed/Z7192MLK4h4" frameborder="0" allowfullscreen></iframe>
+					
 
 block js
 	script(type="text/javascript").
@@ -45,4 +182,52 @@ block js
 
 			event.preventDefault()
 			return false
+		}
+	script(type="text/javascript").
+		document.getElementById("defaultOpen").click();
+		function openCity(evt, tabName) {
+
+			var i, tabcontent, tablinks;
+
+			// Get all elements with class="tabcontent" and hide them
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			// Get all elements with class="tablinks" and remove the class "active"
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			// Show the current tab, and add an "active" class to the button that opened the tab
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+	script(type="text/javascript").
+		$(function(){
+			$('#slider1').Thumbelina({
+				orientation:'vertical',        
+				$bwdBut:$('#slider1 .top'),    
+				$fwdBut:$('#slider1 .bottom')  
+			});
+		});
+		$(function(){
+			$(window).resize(function() {
+				$('#info').text("Page width: "+$(this).width());
+			});
+			$(window).trigger('resize');
+		});
+		// The following piece of code can be ignored.
+		if (window.location.hostname.indexOf("starplugins.") != -1) {
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-254857-7']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		}

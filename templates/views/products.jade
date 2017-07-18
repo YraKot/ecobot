@@ -1,16 +1,137 @@
+
+//- extends ../layouts/default
+
+//- block content
+//- 	h2 Sort
+//- 	#sorts.button-group
+//- 		button.button.is-checked(data-sort-by='original-order') original order
+//- 		button.button(data-sort-by='name') name
+//- 		button.button(data-sort-by='number') number
+//- 	.grid
+//- 		each product in data.products.results
+//- 				.element-item
+//- 					.prod_content
+//- 						.name(href='/product/' + product.slug)= product.title
+//- 						.number= product.price
+
+
+//- block js
+//- 	script(type="text/javascript").
+//- 		var $grid = $('.grid').isotope({
+//- 			itemSelector: '.element-item',
+//- 			layoutMode: 'fitRows',
+//- 			getSortData: {
+//- 				name: '.name',
+//- 				symbol: '.symbol',
+//- 				number: '.number parseInt',
+//- 				category: '[data-category]',
+//- 				weight: function( itemElem ) {
+//- 				var weight = $( itemElem ).find('.prod_price').text();
+//- 				return parseFloat( weight.replace( /[\(\)]/g, '') );
+//- 				}
+//- 			}
+//- 		});
+//- 		$('#sorts').on( 'click', 'button', function() {
+//- 			var sortByValue = $(this).attr('data-sort-by');
+//- 			$grid.isotope({ sortBy: sortByValue });
+//- 		});
+
+//- 		// change is-checked class on buttons
+//- 		$('.button-group').each( function( i, buttonGroup ) {
+//- 			var $buttonGroup = $( buttonGroup );
+//- 			$buttonGroup.on( 'click', 'button', function() {
+//- 				$buttonGroup.find('.is-checked').removeClass('is-checked');
+//- 				$( this ).addClass('is-checked');
+//- 			});
+//- 		});
+
 extends ../layouts/default
 
+
+mixin banner
+	.banner_wrap
+		.wrap
+			img(src='http://placehold.it/1200x400?text=1', alt='')
+			img(src='http://placehold.it/1200x400?text=2', alt='')
+			img(src='http://placehold.it/1200x400?text=3', alt='')
+
+mixin sortBy
+	.container(style="margin-top: 60px")
+		.col-sm-6
+		
+			h4 Показано #{utils.plural(data.products.results.length, '* products')}.
+		.col-sm-6.text-right
+			.sortby 
+				#sorts.button-group
+					button.button.is-checked(data-sort-by='original-order') по новинкам
+					//- button.button(data-sort-by='prod_title') name
+					button.button(data-sort-by='number') по зростанню ціни
+	
+
 block content
-	.container
-		.row
-			each product in data.products.results
-				.col-sm-6.col-md-4
-					.myproduct
-						.myproduct_image
-							if product.image.exists
-								.img_product: a(href='/product/' + product.slug): img(src=product._.image.fit(500,500)).img-responsive
-						.text_product
-						h3
-							.products_title(href='/product/' + product.slug)= product.title
-							.products-price= numeral(product.price).format('$0,0.00')
-							.btn_addtocart(href='#', role='button') Add To Cart
+	+banner
+	+sortBy
+	.grid_prod
+		each product in data.products.results
+			.grid_item_prod
+				.prod_img
+					if product.image.exists
+						a(href='/product/' + product.slug): img(src=product._.image.fit(600, 400)).img_responsive
+				.prod_content
+					.prod_title(href='/product/' + product.slug)= product.title
+					.prod_price= numeral(product.price).format('$0,0.00')
+					.number(style="display: none")= product.price
+					.btn_addtocart(href='#', role='button') Add To Cart
+					.prod_brief!= product.brief
+
+block js
+	script(type="text/javascript").
+		var t = $('.wrap');
+
+		t.slick({
+			dots: false,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
+			autoplay: true,
+			autoplaySpeed: 2000,
+				fade: true,
+			cssEase: 'linear'
+		});
+
+		t.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+			var s = t.find('[data-slick-index="'+nextSlide+'"]').attr('data');
+			t.slick('setOption','autoplaySpeed',s);
+		});
+	script(type="text/javascript").
+		var $grid = $('.grid_prod').isotope({
+			itemSelector: '.grid_item_prod',
+			masonry: {
+				columnWidth: 50,
+				gutter: 30
+			},
+			getSortData: {
+				name: '.prod_title',
+				number: '.number parseInt',
+				category: '[data-category]',
+				weight: function( itemElem ) {
+				var weight = $( itemElem ).find('.weight').text();
+				return parseFloat( weight.replace( /[\(\)]/g, '') );
+				}
+			}
+		});
+		
+		$('#sorts').on( 'click', 'button', function() {
+			var sortByValue = $(this).attr('data-sort-by');
+			$grid.isotope({ sortBy: sortByValue });
+		});
+
+		// change is-checked class on buttons
+		$('.button-group').each( function( i, buttonGroup ) {
+			var $buttonGroup = $( buttonGroup );
+			$buttonGroup.on( 'click', 'button', function() {
+				$buttonGroup.find('.is-checked').removeClass('is-checked');
+				$( this ).addClass('is-checked');
+			});
+		});
+		

@@ -5,74 +5,168 @@
 // 	padding-top: 30px;
 // 	color: #777777;
 // }
-#footer {
-	border-top: 6px solid #feb23a;
-	padding-top: 40px;
-	padding-bottom: 20px;
-	
-	background: #2d2d2d;
 
-	p {
-		color: #afaeae;
-	}
-	address {
-		color: #afaeae;
-		h3 {
-			color: #feb23a;
-			span {
+#footer
+	padding 50px 0 25px 0
+	background #2d2d2d
+	span 
+		color #feb23a
+	a
+		color #feb23a
+	p 
+		color #afaeae
+		font-size 13px
+
+	.container-flex 
+		display flex
+		flex-direction row
+		flex-wrap wrap
+		align-items center
+		
+
+		.item1	
+			width 200px
+			flex-grow 1
+
+			address {
+				text-align: left;
 				color: #afaeae;
-			}
-		}
-
-		strong {
-			color: #fff;
-		}
-	}
-	span {
-		color: #d49737;
-	}
-	.social {
-		margin-top: 25px;
-		padding: 0;
-		ul {
-			margin: 0;
-			padding: 5px;
-			li {
-				// margin: 5px;
-				list-style: none outside none;
-				display: inline-block;
-				i {
-					width: 40px;
-					height: 40px;
-					color: #afaeae;
-					font-size: 22px;
-					text-align:center;
-					padding-top: 10px;
-					border-radius: 50%;
-					transition: all ease 0.3s;
+				h3 {
+					color: #feb23a;
+					span {
+						color: #afaeae;
+						font-size: 16px;
+					}
 				}
-				i:hover {
+
+				strong {
+					color: #fff;
+				}
+			}
+			
+
+			
+		
+		.item2	
+			flex-grow 3
+			align-self center
+			text-align center
+
+			.logo 
+				height 80px
+		
+		.item3 
+			width 200px
+			flex-grow 1
+
+			.social {
+				ul {
+					margin: 0;
+					padding: 5px;
+					li {
+						// margin: 5px;
+						list-style: none outside none;
+						display: inline-block;
+						i {
+							width: 40px;
+							height: 40px;
+							color: #afaeae;
+							font-size: 22px;
+							text-align:center;
+							padding-top: 10px;
+							border-radius: 50%;
+							transition: all ease 0.3s;
+						}
+						i:hover {
+							
+							// width: 40px;
+							// height: 40px;
+							color: #FFF;
+							text-decoration: none;
+							transition: all ease 0.3s;
+						}
+						.fa-facebook:hover { background: #d49737; }
+						.fa-vk:hover { background: #d49737; }
+						.fa-twitter:hover { background: #d49737; }
+						.fa-youtube:hover { background: #d49737; }
+						.fa-google-plus:hover { background: #d49737; }
+					}
+				}
+			}
+		
+		.item4
+			text-align center
+			flex-basis 100%
+
+
+// #footer {
+// 	border-top: 6px solid #feb23a;
+// 	padding-top: 40px;
+// 	padding-bottom: 20px;
+	
+// 	background: #2d2d2d;
+
+// 	p {
+// 		color: #afaeae;
+// 	}
+// 	address {
+// 		color: #afaeae;
+// 		h3 {
+// 			color: #feb23a;
+// 			span {
+// 				color: #afaeae;
+// 			}
+// 		}
+
+// 		strong {
+// 			color: #fff;
+// 		}
+// 	}
+// 	span {
+// 		color: #d49737;
+// 	}
+// 	.social {
+// 		margin-top: 25px;
+// 		padding: 0;
+// 		ul {
+// 			margin: 0;
+// 			padding: 5px;
+// 			li {
+// 				// margin: 5px;
+// 				list-style: none outside none;
+// 				display: inline-block;
+// 				i {
+// 					width: 40px;
+// 					height: 40px;
+// 					color: #afaeae;
+// 					font-size: 22px;
+// 					text-align:center;
+// 					padding-top: 10px;
+// 					border-radius: 50%;
+// 					transition: all ease 0.3s;
+// 				}
+// 				i:hover {
 					
-					// width: 40px;
-					// height: 40px;
-					color: #FFF;
-					text-decoration: none;
-					transition: all ease 0.3s;
-				}
-				.fa-facebook:hover { background: #d49737; }
-				.fa-vk:hover { background: #d49737; }
-				.fa-twitter:hover { background: #d49737; }
-				.fa-youtube:hover { background: #d49737; }
-				.fa-google-plus:hover { background: #d49737; }
-			}
-		}
-	} 
-}
+// 					// width: 40px;
+// 					// height: 40px;
+// 					color: #FFF;
+// 					text-decoration: none;
+// 					transition: all ease 0.3s;
+// 				}
+// 				.fa-facebook:hover { background: #d49737; }
+// 				.fa-vk:hover { background: #d49737; }
+// 				.fa-twitter:hover { background: #d49737; }
+// 				.fa-youtube:hover { background: #d49737; }
+// 				.fa-google-plus:hover { background: #d49737; }
+// 			}
+// 		}
+// 	} 
+// }
 
-.logo {
-	height: 60px;
-}
+// .logo {
+// 	height: 60px;
+// }
 
-.myfooter a {
-	color: #d49737;
-}
+// .myfooter a {
+// 	color: #d49737;
+// }

@@ -17,6 +17,7 @@
  * See the Express application routing documentation for more information:
  * http://expressjs.com/api.html#app.VERB
  */
+var nodemailer = require('nodemailer');
 
 var keystone = require('keystone');
 var middleware = require('./middleware');
@@ -36,15 +37,25 @@ exports = module.exports = function(app) {
 	
 	// Views
 	app.get('/', routes.views.index);
+	app.get('/banner?', routes.views.index);
+	// app.get('/store?', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/cart', routes.views.cart);
 	app.get('/store', routes.views.products);
-	
+
+	app.post('/order', routes.views.order);
+	//app.get('/cart', function(req, res));
+
+	app.get('/store/:banner?', routes.views.products);
+
 	app.get('/product/:product', routes.views.product);
 	app.all('/contact', routes.views.contact);
-	// app.post('/checkout', routes.views.checkout);
+
+	app.all('/checkout', routes.views.checkout);
+	// app.all('/*', routes.views.index);
+	
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

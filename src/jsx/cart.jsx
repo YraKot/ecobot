@@ -4,6 +4,16 @@ import numeral from 'numeral'
 import countryData from './countries.js' 
 import request from 'superagent'
 
+//import nodemailer from 'nodemailer';
+// var transporter = nodemailer.createTransport({
+//   service: 'Gmail',
+//   auth: {
+//     user: 'yurkawkyrka@gmail.com',
+//     pass: '13765890',
+//   },
+// });
+
+
 var {countries} = countryData 
 
 const currencyFormat = '$0,0.00'
@@ -124,48 +134,47 @@ class Cart extends Component {
 	    }
 	}
 
-	retrievedPosition(position) {
-		var {latitude, longitude} = position.coords
+	// retrievedPosition(position) {
+	// 	var {latitude, longitude} = position.coords
 
-		var geocodeURL = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude
+	// 	var geocodeURL = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude
 
-		request.get(geocodeURL).end((err, response) => {
-			if (response && response.body) {
-				var {results} = response.body
-				console.log("Success!")
-				console.log(results)
+	// 	request.get(geocodeURL).end((err, response) => {
+	// 		if (response && response.body) {
+	// 			var {results} = response.body
+	// 			console.log("Success!")
+	// 			console.log(results)
 
-				var topResult = results[0] || null
+	// 			var topResult = results[0] || null
 
-				if (!topResult) {
-					console.log("No results")
-					return
-				}
+	// 			if (!topResult) {
+	// 				console.log("No results")
+	// 				return
+	// 			}
 
-				var addressComponents = topResult.address_components
+	// 			var addressComponents = topResult.address_components
 
-				for (var i = 0; i < addressComponents.length; i++){
-					var result = addressComponents[i]
+	// 			for (var i = 0; i < addressComponents.length; i++){
+	// 				var result = addressComponents[i]
 					
-					if (result.types.indexOf("country") >= 0) {
-						this.setState({
-							country: result.long_name
-						})
-					}
+	// 				if (result.types.indexOf("country") >= 0) {
+	// 					this.setState({
+	// 						country: result.long_name
+	// 					})
+	// 				}
 
-					if (result.types.indexOf("locality") >= 0) {
-						this.setState({
-							city: result.long_name
-						})
-					}
-				}
-			}
-		})
-	}
+	// 				if (result.types.indexOf("locality") >= 0) {
+	// 					this.setState({
+	// 						city: result.long_name
+	// 					})
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// }
 
 	removeItem(event){
 		var index = parseInt(event.target.getAttribute('data-index'))
-
 		var currentItems = this.state.items
 		currentItems.splice(index, 1)
 		this.updateItems(currentItems)
@@ -210,36 +219,62 @@ class Cart extends Component {
 	}
 
 	checkout() {
-		const StripeHandler = StripeCheckout.configure({
-			key: this.props.stripePublishableKey,
-			locale: 'auto',
-			allowRememberMe: true,
-			token: (token) => {
-				token.shoppingCart = this.state.items
 
-				console.log(token)
+	
+		let FormData = {
+			formName: this.state.name,
+			formEmail: this.state.email,
+			formPhone: this.state.tel
+		}
+		// alert(JSON.stringify(FormData))
+	 	var info = {"nome": this.state.name, "email": this.state.email};
 
-				$.post('/checkout', token, function(response) {
-					console.log(response)
-				})
-			}
-		});
-
-		StripeHandler.open({
-			name: 'Ecobot Inc.',
-			description: this.state.items.length + ' Items',
-			currency: "cad",
-			amount: (this.state.total * 100)
+		$.ajax({
+			type: "POST",
+			url: "/checkout",
+			data: JSON.stringify(info),
+			contentType:"application/json; charset=utf-8",
+			dataType: 'json',
+			
 		})
+
+		var index = parseInt(event.target.getAttribute('data-index'))
+		var currentItems = this.state.items
+		currentItems.splice(index, currentItems.length)
+		this.updateItems(currentItems)
+		
+		window.location.replace("/");
+		
+		// $.post('/checkout', {data: FormData} );
+		// const StripeHandler = StripeCheckout.configure({
+		// 	key: this.props.stripePublishableKey,
+		// 	allowRememberMe: true,
+		// 	FormData: (FormData) => {
+		// 		FormData.shoppingCart = this.state.items
+
+		// 		console.log(FormData)
+
+		// $.post('/checkout', FormData, function(response) {
+		// 	console.log(response)
+		// })
+		// 	}
+		// });
+
+		// StripeHandler.open({
+		// 	name: 'Ecobot Inc.',
+		// 	description: this.state.items.length + ' Items',
+		// 	currency: "cad",
+		// 	amount: (this.state.total * 100)
+		// })
 	}
 
-	countryChanged(event) {
-		var newCountry = event.target.value
-		this.setState({
-			country: newCountry
-		})
-		localStorage.setItem('selectedCountry', newCountry)
-	}
+	// countryChanged(event) {
+	// 	var newCountry = event.target.value
+	// 	this.setState({
+	// 		country: newCountry
+	// 	})
+	// 	localStorage.setItem('selectedCountry', newCountry)
+	// }
 
 	inputChanged(event) {
 		console.log("Changed")
@@ -256,9 +291,9 @@ class Cart extends Component {
 
 		this.setState(newState)
 
-		if (inputKey === 'city') {
-			localStorage.setItem('selectedCity', inputValue)
-		}
+		// if (inputKey === 'city') {
+		// 	localStorage.setItem('selectedCity', inputValue)
+		// }
 	}
 
 	renderCartItem(item, index) {
@@ -277,22 +312,18 @@ class Cart extends Component {
 		</div>
 	}
 
-	renderCountryOption(country, index) {
-		var key = 'country-' + index
+	// renderCountryOption(country, index) {
+	// 	var key = 'country-' + index
 
-		var optionProps = {
-			value: country.country,
-			key: key
-		}
+	// 	var optionProps = {
+	// 		value: country.country,
+	// 		key: key
+	// 	}
 
-		return <option {...optionProps}>{ country.country }</option>
-	}
+	// 	return <option {...optionProps}>{ country.country }</option>
+	// }
 
 	render() {
-		var postalCodePlaceholder = "Postal Code"
-		if (this.state.country == "United States") {
-			postalCodePlaceholder = "Zip Code"
-		}
 
 		return <div className="shopping-cart-container">
 			<div className="shopping-cart-items">
@@ -319,20 +350,29 @@ class Cart extends Component {
 					<div className="form-group"> 
 						<input className="form-control" data-key="address" value={ this.state.address } placeholder="Address" onChange={ this.inputChanged.bind(this) }/>
 					</div>
-					<div className="form-group form-inline"> 
-						<input className="form-control" data-key="postalCode" value={ this.state.postalCode } placeholder={ postalCodePlaceholder } onChange={ this.inputChanged.bind(this) }/>
-						<input className="form-control" data-key="city" value={ this.state.city } placeholder="City" onChange={ this.inputChanged.bind(this) }/>
+					<div className="form-group"> 
+						<input className='form-control' data-key="email" value={this.state.email} name='email' placeholder="email" type='email' required onChange={this.inputChanged.bind(this)}  />
+					</div>
+					<div className="form-group">
+						<input className='form-control' data-key="tel" value={this.state.tel} type="tel" required={true} placeholder="phone" onChange={this.inputChanged.bind(this)}/>
 					</div>
 					
-				 </div>
-					<div className="btn btn-primary btn-cart" onClick={ this.checkout.bind(this) }>замовити</div>
+					
+				</div>
+					<div className="btn btn-primary btn-cart" onClick={this.checkout.bind(this)}>Замовити</div>
 			</div>
 		</div>
 	}
 }
 
 // class CheckoutButton extends Component {
-
+// 	return () => {
+// 		render (){
+// 			<div>
+// 				<h1>hello fucking noob</h1>
+// 			</div>
+// 		}
+// 	}
 // }
 // ReactDOM.render(<CheckoutButton />, document.getElementById('checkout-button'))
 

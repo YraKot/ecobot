@@ -21,7 +21,13 @@ Post.add({
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
+	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+	styles: { type: Types.Select, options: [
+		{ value: '1x1', label: '1x1' },
+		{ value: '1x2', label: '1x2' },
+		{ value: '2x1', label: '2x1' },
+		{ value: '2x2', label: '2x2' }
+	] },
 });
 
 Post.schema.virtual('content.full').get(function() {

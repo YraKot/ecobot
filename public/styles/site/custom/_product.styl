@@ -1,13 +1,82 @@
-.store-content
-	make-sm-column(10)
-	padding-left 30px
-	
-	h1
-		margin-top 0px
-	
-	>h1
-		margin-left 8px
-.container.store-container
-	padding-bottom 60px
-	padding-left 0px
-	padding-right 0px
+.container
+	.prod_title
+		h1
+			margin-top 0
+			font-size 30px
+			text-transform uppercase
+			font-weight 600
+			text-align left
+	.prod_price
+		margin-top 25px
+		color #f7ae3a
+		font-size 32px
+		text-align left
+	.prod_store
+		font-size 12px
+		text-align left
+		font-weight bold
+		text-transform uppercase
+	.prod_brief
+		margin 25px 0
+		border-top 1px solid #d9d9d9
+		border-bottom 1px solid #d9d9d9
+		padding 15px 0
+		p
+			font-size 14px
+			text-align left
+			color #666666
+	.btn-text
+		background #f7ae3a
+		font-size 12px
+		width 240px
+		display block
+		float left
+		text-transform uppercase
+		vertical-align middle
+		padding 20px
+		padding-top 16px
+		padding-bottom 16px
+		margin-right 1px
+		border-radius 30px
+	//
+	.tab
+		text-align center
+		margin-top 20px
+		button
+			background-color #fff
+			border none
+			font-size 18px
+			text-transform uppercase
+			color #858585
+			padding 0 20px
+			outline none
+		button:active
+			color #f7ae3a
+			// border none
+		button:focus
+			color #f7ae3a
+			// border none
+		// .tablinks
+	.tabcontent
+		display none
+		background #f8f8f8
+		animation: fadeEffect 1s
+		h3
+			font-size 20px
+			font-weight bold
+			text-align left
+			padding-top 40px
+			padding-bottom 20px
+			padding-left 50px
+			padding-right 50px
+		p
+			font-size 14px
+			text-align justify
+			padding-bottom 20px
+			padding-left 50px
+			padding-right 50px
+		@keyframes fadeEffect
+			from
+				opacity 0
+			to
+				opacity 1

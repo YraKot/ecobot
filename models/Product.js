@@ -13,12 +13,13 @@ var Product = new keystone.List('Product', {
 
 Product.add({
 	title: { type: String, required: true },
-	image: { type: Types.CloudinaryImage },
 	price: { type: Types.Money, format: '$0,0.00' },
 	taxable: { type: Boolean, default: true },
+	brief: { type: Types.Html, wysiwyg: true, height: 150 },
 	description: { type: Types.Html, wysiwyg: true, height: 250 },
-	
-	
+	image: { type: Types.CloudinaryImage },
+	images: { type: Types.CloudinaryImages },
+	numb:{type: Number}
 });
 
 Product.schema.virtual('content.full').get(function() {

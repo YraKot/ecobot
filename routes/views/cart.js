@@ -1,19 +1,19 @@
 var keystone = require('keystone');
+var nodemailer = require('nodemailer');
+var Order = keystone.list('Enquiry');
 
 exports = module.exports = function(req, res) {
 	
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
+	
+	// Set locals
 	locals.section = 'cart';
 	locals.cartOptions = {
 		stripePublishableKey: keystone.get('stripe publishable key'),
 		defaultCountry: keystone.get('store country')
 	};
-	
-	// Render the view
 	view.render('cart');
 	
 };

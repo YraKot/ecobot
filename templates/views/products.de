@@ -1,0 +1,109 @@
+//- extends ../layouts/default
+
+//- block content
+//- 	.container
+//- 		.row
+//- 			//- if banners.length
+//- 			//- 	h1= banners.length
+//- 			each banner in banners
+//- 				h1= banner.name
+//- 			each product in data.products.results
+//- 				.col-sm-6.col-md-4
+//- 					.myproduct
+//- 						.myproduct_image
+//- 							if product.image.exists
+//- 								.img_product: a(href='/product/' + product.slug): img(src=product._.image.fit(500,500)).img-responsive
+//- 						.text_product
+//- 						h3
+//- 							.products_title(href='/product/' + product.slug)= product.title
+//- 							.products-price= numeral(product.price).format('$0,0.00')
+//- 							.btn_addtocart(href='#', role='button') Add To Cart
+
+
+extends ../layouts/default
+
+style(type="text/css").
+	.slick-prev:before, .slick-next:before {
+		font-size: 70px;
+		color: #00569C;
+		left: -100px;
+		top: -13px;
+		background: white;
+		position: absolute;
+	}
+
+
+
+mixin sortBy
+	.container(style="margin-top: 60px")
+		.col-sm-6
+			p Показано 4 з 4
+		.col-sm-6.text-right
+			.sortby 
+				span Сортування
+				select(name='') 
+					option(value='') за популярністю
+					option(value='') від дешевих до дорогих
+					option(value='') від дорогих до дешевих
+					option(value='') за новинками
+
+mixin banner
+	.banner_wrap
+		.wrap
+			img(src='http://placehold.it/1200x400?text=1', alt='')
+			img(src='http://placehold.it/1200x400?text=2', alt='')
+			img(src='http://placehold.it/1200x400?text=3', alt='')
+
+
+
+
+
+block content
+	+banner
+	+sortBy
+	.container
+		.row
+			each product in data.products.results
+				.col-sm-6.col-md-4
+					//- .grid
+					.cell
+						if product.image.exists
+							a(href='/product/' + product.slug): img(src=product._.image.fit(600, 400)).img_responsive
+						.products_content
+							.products_title(href='/product/' + product.slug)= product.title
+							.products_price= numeral(product.price).format('$0,0.00')
+							.btn_addtocart(href='#', role='button') Add To Cart
+		.clearfix
+	//- .container
+	//- 	.row
+	//- 		each product in data.products.results
+	//- 			.col-sm-6.col-md-4
+	//- 				.myproduct
+	//- 					.myproduct_image
+	//- 						if product.image.exists
+	//- 							.img_product: a(href='/product/' + product.slug): img(src=product._.image.fit()).img_responsive
+	//- 					.text_product
+	//- 					h3
+	//- 						.products_title(href='/product/' + product.slug)= product.title
+	//- 						.products-price= numeral(product.price).format('$0,0.00')
+	//- 						.btn_addtocart(href='#', role='button') Add To Cart
+
+block js
+	script(type="text/javascript").
+		var t = $('.wrap');
+
+		t.slick({
+			dots: false,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
+			autoplay: true,
+			autoplaySpeed: 2000,
+				fade: true,
+			cssEase: 'linear'
+		});
+
+		t.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+			var s = t.find('[data-slick-index="'+nextSlide+'"]').attr('data');
+			t.slick('setOption','autoplaySpeed',s);
+		});
