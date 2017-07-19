@@ -1,52 +1,4 @@
-
-//- extends ../layouts/default
-
-//- block content
-//- 	h2 Sort
-//- 	#sorts.button-group
-//- 		button.button.is-checked(data-sort-by='original-order') original order
-//- 		button.button(data-sort-by='name') name
-//- 		button.button(data-sort-by='number') number
-//- 	.grid
-//- 		each product in data.products.results
-//- 				.element-item
-//- 					.prod_content
-//- 						.name(href='/product/' + product.slug)= product.title
-//- 						.number= product.price
-
-
-//- block js
-//- 	script(type="text/javascript").
-//- 		var $grid = $('.grid').isotope({
-//- 			itemSelector: '.element-item',
-//- 			layoutMode: 'fitRows',
-//- 			getSortData: {
-//- 				name: '.name',
-//- 				symbol: '.symbol',
-//- 				number: '.number parseInt',
-//- 				category: '[data-category]',
-//- 				weight: function( itemElem ) {
-//- 				var weight = $( itemElem ).find('.prod_price').text();
-//- 				return parseFloat( weight.replace( /[\(\)]/g, '') );
-//- 				}
-//- 			}
-//- 		});
-//- 		$('#sorts').on( 'click', 'button', function() {
-//- 			var sortByValue = $(this).attr('data-sort-by');
-//- 			$grid.isotope({ sortBy: sortByValue });
-//- 		});
-
-//- 		// change is-checked class on buttons
-//- 		$('.button-group').each( function( i, buttonGroup ) {
-//- 			var $buttonGroup = $( buttonGroup );
-//- 			$buttonGroup.on( 'click', 'button', function() {
-//- 				$buttonGroup.find('.is-checked').removeClass('is-checked');
-//- 				$( this ).addClass('is-checked');
-//- 			});
-//- 		});
-
 extends ../layouts/default
-
 
 mixin banner
 	.banner_wrap
@@ -67,7 +19,6 @@ mixin sortBy
 					//- button.button(data-sort-by='prod_title') name
 					button.button(data-sort-by='number') по зростанню ціни
 	
-
 block content
 	+banner
 	+sortBy

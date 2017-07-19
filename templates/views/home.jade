@@ -59,9 +59,9 @@ block header
 					li(data-target='#carousel-example-generic', data-slide-to='1')
 					li(data-target='#carousel-example-generic', data-slide-to='2')
 				.carousel-inner(role='listbox')
-					//- if banner.image.exists
+					
 					.item.active
-						img(src='images/slide2.jpg', alt='...')
+						img(src= banner._.image1.fit(cover), alt='...')
 						.carousel-caption.slide1
 							.animated.bounceInDown
 								h1 BUGGY
@@ -69,38 +69,40 @@ block header
 							p.animated.bounceInRight
 								| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum at voluptatibus modi nihil fuga nostrum quidem. Eligendi esse hic itaque.
 							a(href="/store").btn_store.animated.bounceIn КАТАЛОГ
-					.item.slide2
-						img(src= banner._.image2.fit(cover), alt='...')
-						.carousel-caption.slide1
-							.animated.bounceInDown
-								h1= banner.title2
-								p.animated.bounceInRight!= banner.description2
-							a(href="/store").btn_store.animated.bounceIn КАТАЛОГ
-					.item.slide3
-						img(src= banner._.image3.fit(cover), alt='...')
-						.carousel-caption.slide1
-							.animated.bounceInDown
-								h1= banner.title3
-								p.animated.bounceInRight!= banner.description3
-							a(href="/store").btn_store.animated.bounceIn КАТАЛОГ
+					if banner.image2.exists
+						.item.slide2
+							img(src= banner._.image2.fit(cover), alt='...')
+							.carousel-caption.slide2
+								.animated.bounceInDown
+									h1= banner.title2
+									p.animated.bounceInRight!= banner.description2
+								a(href="/store").btn_store.animated.bounceIn КАТАЛОГ
+					if banner.image3.exists
+						.item.slide3
+							img(src= banner._.image3.fit(cover), alt='...')
+							.carousel-caption.slide3
+								.animated.bounceInDown
+									h1= banner.title3
+									p.animated.bounceInRight!= banner.description3
+								a(href="/store").btn_store.animated.bounceIn КАТАЛОГ
 				a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
 					span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
 					span.sr-only Previous
 				a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
 					span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
 					span.sr-only Next
-// .header-container
-// .video-container
-// .filter
-// video.fillWidth(autoplay='', loop='')
-// source(src='youtube/mp4/50-Percent-Off.mp4', type='video/mp4')
-// | Your browser does not support the video tag. I suggest you upgrade your browser.
-// source(src='youtube/webm/50-Percent-Off.webm', type='video/webm')
-// | Your browser does not support the video tag. I suggest you upgrade your browser.
-// source(src='youtube/ogv/50-Percent-Off.ogv', type='video/ogg')
-// | Your browser does not support the video tag. I suggest you upgrade your browser.
-// .poster.hidden
-// img(src='yuotube/jpg/50-Percent-Off.jpg', alt='')
+//- .header-container
+//- .video-container
+//- .filter
+//- video.fillWidth(autoplay='', loop='')
+//- source(src='youtube/mp4/50-Percent-Off.mp4', type='video/mp4')
+//- | Your browser does not support the video tag. I suggest you upgrade your browser.
+//- source(src='youtube/webm/50-Percent-Off.webm', type='video/webm')
+//- | Your browser does not support the video tag. I suggest you upgrade your browser.
+//- source(src='youtube/ogv/50-Percent-Off.ogv', type='video/ogg')
+//- | Your browser does not support the video tag. I suggest you upgrade your browser.
+//- .poster.hidden
+//- img(src='yuotube/jpg/50-Percent-Off.jpg', alt='')
 
 block content
 	each banner in banners
@@ -133,10 +135,6 @@ block content
 								img.ico3(src='/images/ico/ico3.png', alt='')
 								| КЕРУВАННЯ ЗІ СМАРТФОНА
 					.col-md-4(style='padding-top: 60px;')
-						//- .single-item
-						//- 	img(src= banner._.about_image1.fit(cover))
-						//- 	img(src= banner._.about_image2.fit(cover))
-						//- 	img(src= banner._.about_image2.fit(cover))
 						#carousel-example-generic.carousel.slide(data-ride='carousel')
 							// Indicators
 							ol.carousel-indicators
@@ -145,12 +143,14 @@ block content
 								li(data-target='#carousel-example-generic', data-slide-to='2')
 							// Wrapper for slides
 							.carousel-inner
-								.item.active
-									img(src= banner._.about_image1.fit(cover))
-								.item
-									img(src= banner._.about_image2.fit(cover))
-								.item
-									img(src= banner._.about_image2.fit(cover))
+								if banner.about_image1.exists
+									`mg(src= banner._.about_image1.fit(cover))
+								if banner.about_image2.exists
+									.item
+										img(src= banner._.about_image2.fit(cover))
+								if banner.about_image3.exists
+									.item
+										img(src= banner._.about_image2.fit(cover))
 		section#second
 			.container.wall2
 				p.graffiti2 projects
@@ -219,22 +219,6 @@ block content
 						img(src="/images/ico/left.png", alt="")
 					#open
 						img(src="/images/ico/right.png", alt="")
-				//- .wrap
-				//- 	#side_contact
-				//- 		.form_content
-				//- 			h2 Зв'язатися з нами 
-				//- 			p +38(098)7654321 +38(098)7654321 <br/> ecobot@mail.com
-				//- 			h2 Напишіть нам
-				//- 			p Якшо у вас виникли питання ми з радістю допоможем вам
-				//- 			form(method='post')
-				//- 				input#fname(type='text', name='firstname', placeholder='Name')
-				//- 				input#email(type='text', name='email', placeholder='Email')
-				//- 				input#message(type='text', name='message', placeholder='Message')
-				//- 				input(type='submit', value='НАДІСЛАТИ')
-				//- 	#side_control
-				//- 		button
-				//- 			img(src="/images/ico/left.png", alt="" )
-				//- 	#map_ecobot
 
 block js
 	script(type="text/javascript").
@@ -256,14 +240,14 @@ block js
 			});
 		});
 	script(type="text/javascript").
-		var main = function() { //главная функция
+		var main = function() { 
 
-			$('#close').click(function() { //выбираем класс icon-close и метод click
-				$('#side_contact').animate({ //выбираем класс menu и метод animate
-					width: '-40%' //при клике на крестик меню вернется назад в свое положение и скроется
-				}, "slow"); //скорость движения меню в мс
-				$('#map_contact').animate({ //выбираем тег body и метод animate
-					width: '100%' //чтобы всё содержимое также сдвигалось вправо при открытии меню, установим ему положение 285px
+			$('#close').click(function() {
+				$('#side_contact').animate({ 
+					width: '-40%' 
+				}, "slow"); 
+				$('#map_contact').animate({ 
+					width: '100%' 
 				}, "slow");
 
 				$('#button').animate({
@@ -271,13 +255,13 @@ block js
 				}, 300);
 			});
 
-			$('#open').click(function() { //выбираем класс icon-close и метод click
-				$('#side_contact').animate({ //выбираем класс menu и метод animate
-					width: '40%' //при клике на крестик меню вернется назад в свое положение и скроется
-				}, "slow"); //скорость движения меню в мс
-				$('#map_contact').animate({ //выбираем тег body и метод animate
-					width: '60%' //а содержимое страницы снова вернется в положение 0px
-				}, 300); //скорость движения меню в мс
+			$('#open').click(function() {
+				$('#side_contact').animate({ 
+					width: '40%'
+				}, "slow");
+				$('#map_contact').animate({ 
+					width: '60%'
+				}, 300); 
 
 				$('#button').animate({
 					left: '40%'
